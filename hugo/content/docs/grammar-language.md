@@ -251,8 +251,9 @@ SimpleExpression:
 ```
 Unfortunately, *left-factoring* does not come without consequences and can lead to the generation of unwanted nodes. It is possible to "clean" the tree by using *tree-rewriting actions*.
 ```langium
+interface Expression {}
 Addition returns Expression:
-    SimpleExpression ({Addition.left=current} '+' right=SimpleExpression)*;
+    SimpleExpression ({infer Addition.left=current} '+' right=SimpleExpression)*;
 
 SimpleExpression:
     '(' Addition ')' | value=INT;
